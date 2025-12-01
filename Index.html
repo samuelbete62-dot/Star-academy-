@@ -1,1 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NeoQuiz - Arba Minch Edition. A futuristic quiz platform.">
+  <title>NeoQuiz - Arba Minch Edition</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  
+  <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Link to your JS file (defer makes it load after HTML) -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Animated Glows -->
+  <div class="glow" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
 
+  <!-- HEADER -->
+  <header>
+    <div class="logo" onclick="showPage('home')">NeoQuiz</div>
+    <nav>
+      <a href="#" class="nav-link active" data-page="home">Home</a>
+      <a href="#" class="nav-link" data-page="category">Quizzes</a>
+      <a href="#" class="nav-link" data-page="about">About</a>
+      <a href="#" class="nav-link" data-page="login">Register</a>
+    </nav>
+  </header>
+
+  <!-- HOME PAGE -->
+  <div id="home-page" class="page active">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Challenge Your Mind, <br> Master Every Topic.</h1>
+        <p>Join <strong>NeoQuiz</strong> — the futuristic quiz platform for Arba Minch students. Test your skills and climb the leaderboard.</p>
+        <button class="btn" onclick="showPage('category')">Start Quiz</button>
+      </div>
+      <div class="hero-image">
+        <img src="https://cdn-icons-png.flaticon.com/512/4335/4335533.png" alt="Futuristic Quiz Illustration" />
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-box" onclick="selectCategory('freshman')">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Brain Icon">
+        <h3>Freshman</h3>
+        <p>Basic quizzes designed for students starting high school.</p>
+      </div>
+      <div class="feature-box" onclick="selectCategory('highschool')">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="School Icon">
+        <h3>High-school</h3>
+        <p>Intermediate quizzes to challenge your knowledge.</p>
+      </div>
+      <div class="feature-box" onclick="selectCategory('elementary')">
+        <img src="https://cdn-icons-png.flaticon.com/512/197/197549.png" alt="Blocks Icon">
+        <h3>Elementary</h3>
+        <p>Fun and educational quizzes for younger students.</p>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <h2 onclick="toggleHowItWorks()">How It Works ▾</h2>
+      <div class="steps" id="howItWorksContent">
+        <div class="step">
+          <h3>1. Choose</h3>
+          <p>Select the grade level you want to challenge yourself in.</p>
+        </div>
+        <div class="step">
+          <h3>2. Answer</h3>
+          <p>Answer questions before the timer runs out.</p>
+        </div>
+        <div class="step">
+          <h3>3. Results</h3>
+          <p>Get instant feedback and see your score.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="made-by">
+      <h2>Made by Arba Minch Students</h2>
+      <div class="made-by-content">
+        <img src="https://cdn-icons-png.flaticon.com/512/306/306839.png" alt="Students Illustration">
+        <p>NeoQuiz is developed by students of Arba Minch to help make education fun and accessible to everyone in our city.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- CATEGORY SELECTION PAGE -->
+  <div id="category-page" class="page">
+    <div class="quiz-container">
+      <h1 style="text-align:center; margin-bottom:2rem;">Select Category</h1>
+      <div class="features">
+        <div class="feature-box" onclick="selectCategory('freshman')">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="">
+          <h3>Freshman</h3>
+        </div>
+        <div class="feature-box" onclick="selectCategory('highschool')">
+          <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="">
+          <h3>High-school</h3>
+        </div>
+        <div class="feature-box" onclick="selectCategory('elementary')">
+          <img src="https://cdn-icons-png.flaticon.com/512/197/197549.png" alt="">
+          <h3>Elementary</h3>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <button class="btn" onclick="showPage('home')">Back Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ PAGE -->
+  <div id="quiz-page" class="page">
+    <div class="quiz-container">
+      <div class="quiz-header">
+        <h2 id="quiz-title">Quiz</h2>
+        <div id="timer">Time: <span id="time-left" style="color:#fff; font-weight:bold;">60</span>s</div>
+      </div>
+      
+      <div class="progress-bar">
+        <div class="progress" id="quiz-progress"></div>
+      </div>
+      
+      <div class="question-container">
+        <div class="question-text" id="question-text">Loading...</div>
+        <div class="options-container" id="options-container"></div>
+      </div>
+      
+      <div class="quiz-controls">
+        <button class="btn" id="prev-btn" onclick="prevQuestion()">Previous</button>
+        <button class="btn" id="next-btn" onclick="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS PAGE -->
+  <div id="results-page" class="page">
+    <div class="results-container">
+      <h1>Quiz Complete!</h1>
+      <div class="score-circle">
+        <div class="score-text" id="score-percentage">0%</div>
+      </div>
+      <h2 id="result-message">Keep Practicing!</h2>
+      
+      <div class="results-details">
+        <div class="result-item">
+          <span>Correct Answers:</span>
+          <span id="correct-answers">0</span>
+        </div>
+        <div class="result-item">
+          <span>Total Questions:</span>
+          <span id="total-questions">0</span>
+        </div>
+      </div>
+      
+      <div class="quiz-controls" style="justify-content: center;">
+        <button class="btn" onclick="showPage('category')">Try Another</button>
+        <button class="btn" onclick="showPage('home')">Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN/REGISTER PAGE -->
+  <div id="login-page" class="page">
+    <div class="auth-container">
+      <div class="auth-box">
+        <div class="auth-tabs">
+          <div class="auth-tab active" onclick="switchAuth('login')">Login</div>
+          <div class="auth-tab" onclick="switchAuth('register')">Register</div>
+        </div>
+        
+        <form class="auth-form active" id="login-form">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" required placeholder="user@neoquiz.com">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" required placeholder="••••••••">
+          </div>
+          <button type="submit" class="btn" style="width: 100%;">Login</button>
+        </form>
+        
+        <form class="auth-form" id="register-form">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" required>
+          </div>
+          <button type="submit" class="btn" style="width: 100%;">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT PAGE -->
+  <div id="about-page" class="page">
+    <div class="quiz-container">
+      <h1 style="text-align: center; margin-bottom: 2rem;">About NeoQuiz</h1>
+      <div class="question-container">
+        <p>NeoQuiz is an innovative quiz platform developed by students of Arba Minch University to help fellow students enhance their knowledge.</p>
+        <br>
+        <h3>Our Mission</h3>
+        <p>To make learning interactive, engaging, and accessible to all students in Arba Minch.</p>
+        <br>
+        <h3>Contact</h3>
+        <p>Email: contact@neoquiz.et</p>
+      </div>
+      <div style="text-align: center;">
+          <button class="btn" onclick="showPage('home')">Back Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 NeoQuiz — Made in Arba Minch</p>
+    <div class="socials">
+      <a href="#">FB</a> • <a href="#">TW</a> • <a href="#">IG</a>
+    </div>
+  </footer>
+</body>
+</html>
