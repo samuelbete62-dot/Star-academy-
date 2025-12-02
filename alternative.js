@@ -389,3 +389,16 @@ document.getElementById('register-form').onsubmit = (e) => {
   alert('Account created!');
   showPage('home');
 };
+/* ===== FAQ INTERACTION ===== */
+function toggleFaq(element) {
+  // Toggle the active class on the clicked item
+  element.classList.toggle('active');
+  
+  // Optional: Close others when one is opened (Accordion style)
+  const allFaqs = document.querySelectorAll('.faq-item');
+  allFaqs.forEach(item => {
+    if (item !== element) {
+      item.classList.remove('active');
+    }
+  });
+}
