@@ -402,3 +402,76 @@ function toggleFaq(element) {
     }
   });
 }
+/* ===== CHAT FUNCTIONALITY ===== */
+function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const messageText = input.value.trim();
+  
+  if (messageText === "") return; // Don't send empty messages
+
+  const chatBox = document.getElementById('chat-box');
+
+  // 1. Create the Message HTML
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'message me'; // Class 'me' aligns it to the right
+  
+  // Get current time
+  const now = new Date();
+  const timeString = now.getHours() + ":" + (now.getMinutes()<10?'0':'') + now.getMinutes();
+
+  msgDiv.innerHTML = `
+    <div class="msg-user">You</div>
+    <p>${escapeHtml(messageText)}</p>
+    <div class="msg-time">${timeString}</div>
+  `;
+
+  // 2. Add to Chat Box
+  chatBox.appendChild(msgDiv);
+
+  // 3. Clear Input
+  input.value = "";
+
+  // 4. Scroll to bottom
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  // 5. Simulate a bot reply (Optional - makes it feel alive)
+  setTimeout(() => {
+    botReply();
+  }, 2000);
+}
+
+// Function to handle "Enter" key
+function handleEnter(e) {
+  if (e.key === 'Enter') {
+    sendMessage();
+  }
+}
+
+// Security: Prevent HTML injection
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Simple Auto-Reply Bot
+function botReply() {
+  const chatBox = document.getElementById('chat-box');
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'message other';
+  
+  const now = new Date();
+  const timeString = now.getHours() + ":" + (now.getMinutes()<10?'0':'') + now.getMinutes();
+
+  msgDiv.innerHTML = `
+    <div class="msg-user">System Bot</div>
+    <p>Message received. (Note: This is a demo chat. Messages are not saved to a server yet!)</p>
+    <div class="msg-time">${timeString}</div>
+  `;
+  
+  chatBox.appendChild(msgDiv);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
