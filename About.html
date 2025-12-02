@@ -24,9 +24,11 @@
   <!-- HEADER -->
   <header>
     <div class="logo" onclick="showPage('home')">NeoQuiz</div>
-    <nav>
+   <nav>
       <a href="#" class="nav-link active" data-page="home">Home</a>
       <a href="#" class="nav-link" data-page="category">Quizzes</a>
+      <a href="#" class="nav-link" data-page="courses">Courses</a> <!-- NEW -->
+      <a href="#" class="nav-link" data-page="discuss">Chat</a>   <!-- NEW -->
       <a href="#" class="nav-link" data-page="about">About</a>
       <a href="#" class="nav-link" data-page="login">Register</a>
     </nav>
@@ -440,6 +442,110 @@
 
       <div style="text-align: center; margin-top: 3rem;">
         <button class="btn" onclick="showPage('home')">Return to Home</button>
+      </div>
+
+    </div>
+  </div>
+  <!-- ONLINE COURSES PAGE -->
+  <div id="courses-page" class="page">
+    <div class="quiz-container">
+      <h1 class="section-title">External Knowledge_Base</h1>
+      <p style="text-align:center; color:#aaa; margin-bottom:2rem;">Curated free & certified courses for Ethiopian Students.</p>
+      
+      <div class="courses-grid">
+        
+        <!-- Course 1 -->
+        <div class="course-card">
+          <div class="course-badge free">Free</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/1200px-Logo_of_YouTube_%282015-2017%29.svg.png" alt="YT">
+          <div class="course-content">
+            <h3>Freshman Mathematics</h3>
+            <p class="provider">Platform: YouTube (Ethiopian Education)</p>
+            <p class="desc">Complete breakdown of Calculus and Linear Algebra for 1st Year students.</p>
+            <a href="https://www.youtube.com/results?search_query=ethiopian+freshman+math" target="_blank" class="btn-sm">Watch Now</a>
+          </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-card">
+          <div class="course-badge cert">Certified</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Coursera-Logo_600x600.svg" alt="Coursera">
+          <div class="course-content">
+            <h3>Google IT Support</h3>
+            <p class="provider">Platform: Coursera</p>
+            <p class="desc">Professional certificate. Financial aid available for Ethiopian students.</p>
+            <a href="https://www.coursera.org/professional-certificates/google-it-support" target="_blank" class="btn-sm">Enroll</a>
+          </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-card">
+          <div class="course-badge free">Free</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Harvard_Wreath_Logo_1.svg" alt="CS50">
+          <div class="course-content">
+            <h3>CS50: Computer Science</h3>
+            <p class="provider">Platform: Harvard / edX</p>
+            <p class="desc">The world's most popular intro to coding. C, Python, SQL, and more.</p>
+            <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank" class="btn-sm">Start</a>
+          </div>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="course-card">
+          <div class="course-badge free">Free</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Khan_Academy_logo_2018.svg/1200px-Khan_Academy_logo_2018.svg.png" alt="Khan">
+          <div class="course-content">
+            <h3>SAT / Entrance Prep</h3>
+            <p class="provider">Platform: Khan Academy</p>
+            <p class="desc">Excellent practice for English and Math logic questions.</p>
+            <a href="https://www.khanacademy.org/" target="_blank" class="btn-sm">Practice</a>
+          </div>
+        </div>
+
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <button class="btn" onclick="showPage('home')">Back Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCUSSION / CHAT PAGE -->
+  <div id="discuss-page" class="page">
+    <div class="chat-container">
+      
+      <div class="chat-header">
+        <h2>Global Student Chat</h2>
+        <span class="online-status">● 124 Online</span>
+      </div>
+
+      <div class="chat-box" id="chat-box">
+        <!-- Pre-filled messages to make it look active -->
+        <div class="message system">
+          <p>Welcome to the Arba Minch Student Hub. Be respectful.</p>
+        </div>
+        
+        <div class="message other">
+          <div class="msg-user">Abel (Eng 2nd Year)</div>
+          <p>Has anyone seen the exam schedule for Logic?</p>
+          <div class="msg-time">10:02 AM</div>
+        </div>
+
+        <div class="message other">
+          <div class="msg-user">Sara (Freshman)</div>
+          <p>I think it's posted near the main library. Or check the telegram channel.</p>
+          <div class="msg-time">10:05 AM</div>
+        </div>
+
+        <div class="message me">
+          <div class="msg-user">You</div>
+          <p>Thanks! I was looking for that too.</p>
+          <div class="msg-time">10:06 AM</div>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleEnter(event)">
+        <button class="btn-send" onclick="sendMessage()">➤</button>
       </div>
 
     </div>
