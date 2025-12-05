@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NeoQuiz - Arba Minch Edition. A futuristic quiz platform.">
+  <meta name="description" content="NeoQuiz - Arba Minch Edition.">
   <title>NeoQuiz - Arba Minch Edition</title>
   
   <!-- Google Fonts -->
@@ -11,26 +12,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
   
-  <!-- Link to your CSS file -->
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
   
-  <!-- Link to your JS file (defer makes it load after HTML) -->
+  <!-- JS -->
   <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- Animated Glows -->
   <div class="glow" aria-hidden="true"></div>
   <div class="glow" aria-hidden="true"></div>
 
   <!-- HEADER -->
   <header>
     <div class="logo" onclick="showPage('home')">NeoQuiz</div>
-    <nav>
-      <a href="#" class="nav-link active" data-page="home">Home</a>
-      <a href="#" class="nav-link" data-page="category">Quizzes</a>
-      <a href="#" class="nav-link" data-page="about">About</a>
-      <a href="#" class="nav-link" data-page="login">Register</a>
-    </nav>
+  <nav>
+  <a href="#" class="nav-link active" data-page="home">Home</a>
+  <a href="#" class="nav-link" data-page="category">Quizzes</a>
+  <a href="#" class="nav-link" data-page="courses">Courses</a>
+  <a href="#" class="nav-link" data-page="resources">Downloads</a> <!-- CHANGED -->
+  <a href="#" class="nav-link" data-page="about">About</a>
+  <a href="#" class="nav-link" data-page="login">Register</a>
+</nav>
   </header>
 
   <!-- HOME PAGE -->
@@ -38,73 +40,175 @@
     <section class="hero">
       <div class="hero-text">
         <h1>Challenge Your Mind, <br> Master Every Topic.</h1>
-        <p>Join <strong>NeoQuiz</strong> — the futuristic quiz platform for Arba Minch students. Test your skills and climb the leaderboard.</p>
+        <p>Join <strong>NeoQuiz</strong> — the futuristic quiz platform for Arba Minch students.</p>
         <button class="btn" onclick="showPage('category')">Start Quiz</button>
       </div>
       <div class="hero-image">
         <img src="https://cdn-icons-png.flaticon.com/512/4335/4335533.png" alt="Futuristic Quiz Illustration" />
       </div>
     </section>
+    <!-- INSIDE #home-page -->
+
+<!-- Hero Section (Existing) -->
+<section class="hero">...</section>
+
+<!-- === NEW: SYSTEM RESTORE CARD (Resume Journey) === -->
+<div id="system-restore-container" style="display: none; padding: 0 5% 2rem 5%; justify-content: center;">
+  <div class="restore-card">
+    <div class="restore-header">
+      <span class="blink-indicator"></span>
+      <span>PREVIOUS SESSION FOUND</span>
+    </div>
+    <div class="restore-content">
+      <h3 id="restore-course-name">Course Name</h3>
+      <p id="restore-details">Arba Minch Univ • Semester 1</p>
+    </div>
+    <button class="btn-restore" onclick="resumeSession()">> INITIALIZE RESTORE</button>
+  </div>
+</div>
+
+<!-- Features Section (Existing) -->
+<section class="features">...</section>
 
     <section class="features">
-      <div class="feature-box" onclick="selectCategory('freshman')">
+      <div class="feature-box" onclick="startFreshmanFlow()">
         <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Brain Icon">
         <h3>Freshman</h3>
-        <p>Basic quizzes designed for students starting high school.</p>
+        <p>University courses, semesters, and exams.</p>
       </div>
-      <div class="feature-box" onclick="selectCategory('highschool')">
+      <div class="feature-box" onclick="startHighSchoolFlow()">
         <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="School Icon">
         <h3>High-school</h3>
-        <p>Intermediate quizzes to challenge your knowledge.</p>
+        <p>Grades 9, 10, 11, and 12.</p>
       </div>
-      <div class="feature-box" onclick="selectCategory('elementary')">
+      <div class="feature-box" onclick="handleElementary()">
         <img src="https://cdn-icons-png.flaticon.com/512/197/197549.png" alt="Blocks Icon">
         <h3>Elementary</h3>
-        <p>Fun and educational quizzes for younger students.</p>
+        <p>Fun quizzes. (Coming Soon)</p>
+      </div>
+      <!-- TESTIMONIALS (Holographic Cards) -->
+    <section class="testimonials">
+      <h2 class="section-title">Student Transmission_Logs</h2>
+      <div class="testimonial-grid">
+        
+        <!-- Card 1 -->
+        <div class="holo-card">
+          <div class="holo-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="User Avatar" class="holo-avatar">
+            <div class="holo-info">
+              <h4>Semira Y.</h4>
+              <span>1st Year • Computing</span>
+            </div>
+          </div>
+          <p class="holo-quote">"This helped me ace my Logic mid-term! The logic questions are tougher than the actual exam."</p>
+          <div class="scan-line"></div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="holo-card">
+          <div class="holo-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140047.png" alt="User Avatar" class="holo-avatar">
+            <div class="holo-info">
+              <h4>Dawit A.</h4>
+              <span>Grade 12 • Preparatory</span>
+            </div>
+          </div>
+          <p class="holo-quote">"The Grade 12 entrance questions are exactly like the real exams. A must-have for entrance prep."</p>
+          <div class="scan-line"></div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="holo-card">
+          <div class="holo-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" alt="User Avatar" class="holo-avatar">
+            <div class="holo-info">
+              <h4>Bethelhem K.</h4>
+              <span>Grade 10 • High School</span>
+            </div>
+          </div>
+          <p class="holo-quote">"Finally, an app made for Arba Minch students. It makes chemistry actually look cool!"</p>
+          <div class="scan-line"></div>
+        </div>
+
       </div>
     </section>
 
-    <section class="how-it-works">
-      <h2 onclick="toggleHowItWorks()">How It Works ▾</h2>
-      <div class="steps" id="howItWorksContent">
-        <div class="step">
-          <h3>1. Choose</h3>
-          <p>Select the grade level you want to challenge yourself in.</p>
+    <!-- PARTNERS / ACKNOWLEDGEMENTS -->
+    <section class="partners">
+      <p class="partner-label">SYSTEM POWERED BY</p>
+      <div class="partner-logos">
+        <!-- AMU Logo Placeholder -->
+        <div class="partner-item">
+          <img src="https://cdn-icons-png.flaticon.com/512/2231/2231649.png" alt="AMU">
+          <span>AMU Main Campus</span>
         </div>
-        <div class="step">
-          <h3>2. Answer</h3>
-          <p>Answer questions before the timer runs out.</p>
+        <!-- CS Dept Placeholder -->
+        <div class="partner-item">
+          <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" alt="CS Dept">
+          <span>AMU CS Dept.</span>
         </div>
-        <div class="step">
-          <h3>3. Results</h3>
-          <p>Get instant feedback and see your score.</p>
+        <!-- Local Schools Placeholder -->
+        <div class="partner-item">
+          <img src="https://cdn-icons-png.flaticon.com/512/167/167707.png" alt="Schools">
+          <span>Arba Minch Secondary</span>
         </div>
       </div>
     </section>
 
-    <section class="made-by">
-      <h2>Made by Arba Minch Students</h2>
-      <div class="made-by-content">
-        <img src="https://cdn-icons-png.flaticon.com/512/306/306839.png" alt="Students Illustration">
-        <p>NeoQuiz is developed by students of Arba Minch to help make education fun and accessible to everyone in our city.</p>
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+      <h2 class="section-title">System FAQ</h2>
+      <div class="faq-container">
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>Is NeoQuiz free?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. NeoQuiz is an open-access platform developed to support education in Arba Minch. No payment is required.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>How do I calculate my score?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The system calculates it automatically! You get 1 point for every correct answer. Your percentage is shown immediately after the quiz.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-question">
+            <span>Are these questions from previous national exams?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. The Grade 12 and University Entrance questions are compiled from previous Ethiopian National Exams and Freshman course sheets.</p>
+          </div>
+        </div>
+
       </div>
+    </section>
     </section>
   </div>
 
-  <!-- CATEGORY SELECTION PAGE -->
+  <!-- MAIN CATEGORY PAGE (Redundant now given the flows, but kept for Nav Link) -->
   <div id="category-page" class="page">
     <div class="quiz-container">
       <h1 style="text-align:center; margin-bottom:2rem;">Select Category</h1>
       <div class="features">
-        <div class="feature-box" onclick="selectCategory('freshman')">
+        <div class="feature-box" onclick="startFreshmanFlow()">
           <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="">
           <h3>Freshman</h3>
         </div>
-        <div class="feature-box" onclick="selectCategory('highschool')">
+        <div class="feature-box" onclick="startHighSchoolFlow()">
           <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="">
           <h3>High-school</h3>
         </div>
-        <div class="feature-box" onclick="selectCategory('elementary')">
+        <div class="feature-box" onclick="handleElementary()">
           <img src="https://cdn-icons-png.flaticon.com/512/197/197549.png" alt="">
           <h3>Elementary</h3>
         </div>
@@ -115,23 +219,124 @@
     </div>
   </div>
 
-  <!-- QUIZ PAGE -->
+  <!-- === FRESHMAN FLOW PAGES === -->
+
+  <!-- 1. UNIVERSITY SELECTION -->
+  <!-- 1. UNIVERSITY SELECTION -->
+  <div id="university-page" class="page">
+    <div class="quiz-container">
+      <h1 style="text-align:center; margin-bottom:2rem;">Select University</h1>
+      <div class="features">
+        <!-- Arba Minch -->
+        <div class="feature-box" onclick="selectUniversity('Arba Minch Univ')">
+          <img src="https://cdn-icons-png.flaticon.com/512/2231/2231649.png" alt="AMU">
+          <h3>Arba Minch</h3>
+        </div>
+        <!-- Addis Ababa -->
+        <div class="feature-box" onclick="selectUniversity('Addis Ababa Univ')">
+          <img src="https://cdn-icons-png.flaticon.com/512/8074/8074800.png" alt="AAU">
+          <h3>Addis Ababa</h3>
+        </div>
+        <!-- Hawassa -->
+        <div class="feature-box" onclick="selectUniversity('Hawassa Univ')">
+          <img src="https://cdn-icons-png.flaticon.com/512/4300/4300058.png" alt="HU">
+          <h3>Hawassa</h3>
+        </div>
+        <!-- Bahir Dar -->
+        <div class="feature-box" onclick="selectUniversity('Bahir Dar Univ')">
+          <img src="https://cdn-icons-png.flaticon.com/512/201/201614.png" alt="BDU">
+          <h3>Bahir Dar</h3>
+        </div>
+        <!-- Jimma -->
+        <div class="feature-box" onclick="selectUniversity('Jimma Univ')">
+          <img src="https://cdn-icons-png.flaticon.com/512/560/560216.png" alt="JU">
+          <h3>Jimma</h3>
+        </div>
+        <!-- ASTU -->
+        <div class="feature-box" onclick="selectUniversity('ASTU')">
+          <img src="https://cdn-icons-png.flaticon.com/512/2083/2083213.png" alt="ASTU">
+          <h3>ASTU</h3>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <button class="btn" onclick="showPage('category')">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. SEMESTER SELECTION -->
+  <div id="semester-page" class="page">
+    <div class="quiz-container">
+      <h1 style="text-align:center; margin-bottom:2rem;">Select Semester</h1>
+      <div class="features">
+        <div class="feature-box" onclick="selectSemester('sem1')">
+          <img src="https://cdn-icons-png.flaticon.com/512/3557/3557635.png" alt="">
+          <h3>Semester 1</h3>
+        </div>
+        <div class="feature-box" onclick="selectSemester('sem2')">
+          <img src="https://cdn-icons-png.flaticon.com/512/3557/3557635.png" alt="">
+          <h3>Semester 2</h3>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <button class="btn" onclick="showPage('university')">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. COURSE SELECTION -->
+  <div id="course-page" class="page">
+    <div class="quiz-container">
+      <h1 style="text-align:center; margin-bottom:2rem;">Select Course</h1>
+      <div class="features" id="course-list">
+        <!-- Javascript will inject courses here -->
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <button class="btn" onclick="showPage('semester')">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- === HIGH SCHOOL FLOW PAGES === -->
+
+  <!-- GRADE SELECTION -->
+  <div id="grade-page" class="page">
+    <div class="quiz-container">
+      <h1 style="text-align:center; margin-bottom:2rem;">Select Grade</h1>
+      <div class="features">
+        <div class="feature-box" onclick="selectGrade('9')">
+          <h3>Grade 9</h3>
+        </div>
+        <div class="feature-box" onclick="selectGrade('10')">
+          <h3>Grade 10</h3>
+        </div>
+        <div class="feature-box" onclick="selectGrade('11')">
+          <h3>Grade 11</h3>
+        </div>
+        <div class="feature-box" onclick="selectGrade('12')">
+          <h3>Grade 12</h3>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <button class="btn" onclick="showPage('category')">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ PAGE (Generic) -->
   <div id="quiz-page" class="page">
     <div class="quiz-container">
       <div class="quiz-header">
         <h2 id="quiz-title">Quiz</h2>
         <div id="timer">Time: <span id="time-left" style="color:#fff; font-weight:bold;">60</span>s</div>
       </div>
-      
       <div class="progress-bar">
         <div class="progress" id="quiz-progress"></div>
       </div>
-      
       <div class="question-container">
         <div class="question-text" id="question-text">Loading...</div>
         <div class="options-container" id="options-container"></div>
       </div>
-      
       <div class="quiz-controls">
         <button class="btn" id="prev-btn" onclick="prevQuestion()">Previous</button>
         <button class="btn" id="next-btn" onclick="nextQuestion()">Next</button>
@@ -147,7 +352,6 @@
         <div class="score-text" id="score-percentage">0%</div>
       </div>
       <h2 id="result-message">Keep Practicing!</h2>
-      
       <div class="results-details">
         <div class="result-item">
           <span>Correct Answers:</span>
@@ -158,15 +362,13 @@
           <span id="total-questions">0</span>
         </div>
       </div>
-      
       <div class="quiz-controls" style="justify-content: center;">
-        <button class="btn" onclick="showPage('category')">Try Another</button>
         <button class="btn" onclick="showPage('home')">Home</button>
       </div>
     </div>
   </div>
 
-  <!-- LOGIN/REGISTER PAGE -->
+  <!-- OTHER PAGES (Login, About, etc. kept same) -->
   <div id="login-page" class="page">
     <div class="auth-container">
       <div class="auth-box">
@@ -174,63 +376,259 @@
           <div class="auth-tab active" onclick="switchAuth('login')">Login</div>
           <div class="auth-tab" onclick="switchAuth('register')">Register</div>
         </div>
-        
         <form class="auth-form active" id="login-form">
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" required placeholder="user@neoquiz.com">
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" required placeholder="••••••••">
-          </div>
+          <div class="form-group"><label>Email</label><input type="email" required placeholder="user@neoquiz.com"></div>
+          <div class="form-group"><label>Password</label><input type="password" required placeholder="••••••••"></div>
           <button type="submit" class="btn" style="width: 100%;">Login</button>
         </form>
-        
         <form class="auth-form" id="register-form">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" required>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" required>
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" required>
-          </div>
+          <div class="form-group"><label>Full Name</label><input type="text" required></div>
+          <div class="form-group"><label>Email</label><input type="email" required></div>
+          <div class="form-group"><label>Password</label><input type="password" required></div>
           <button type="submit" class="btn" style="width: 100%;">Register</button>
         </form>
       </div>
     </div>
   </div>
-
-  <!-- ABOUT PAGE -->
+  
+<!-- ABOUT PAGE -->
   <div id="about-page" class="page">
-    <div class="quiz-container">
-      <h1 style="text-align: center; margin-bottom: 2rem;">About NeoQuiz</h1>
-      <div class="question-container">
-        <p>NeoQuiz is an innovative quiz platform developed by students of Arba Minch University to help fellow students enhance their knowledge.</p>
-        <br>
-        <h3>Our Mission</h3>
-        <p>To make learning interactive, engaging, and accessible to all students in Arba Minch.</p>
-        <br>
-        <h3>Contact</h3>
-        <p>Email: contact@neoquiz.et</p>
+    <div class="quiz-container about-container">
+      
+      <!-- Header -->
+      <div class="about-header">
+        <h1 class="neon-text">The NeoQuiz Initiative</h1>
+        <p class="about-subtitle">Born in the dorms of Arba Minch University. Built for the future of Ethiopia.</p>
       </div>
-      <div style="text-align: center;">
-          <button class="btn" onclick="showPage('home')">Back Home</button>
+
+      <!-- Mission Grid -->
+      <div class="mission-grid">
+        <div class="mission-card">
+          <div class="icon-glow">🚀</div>
+          <h3>Our Mission</h3>
+          <p>To replace boring handouts with interactive, gamified learning. We believe studying should feel like leveling up in a game.</p>
+        </div>
+        <div class="mission-card">
+          <div class="icon-glow">🌍</div>
+          <h3>Community First</h3>
+          <p>Content curated specifically for the Ethiopian curriculum, from Grade 9 High School exams to AMU Freshman courses.</p>
+        </div>
+        <div class="mission-card">
+          <div class="icon-glow">💡</div>
+          <h3>Open Access</h3>
+          <p>Education shouldn't have a price tag. NeoQuiz is 100% free and open to every student in the city.</p>
+        </div>
       </div>
+
+      <!-- The Developers Section -->
+      <div class="team-section">
+        <h2 class="section-title" style="margin-top: 0;">System Architects</h2>
+        <div class="team-grid">
+          
+          <!-- Dev 1 -->
+          <div class="dev-card">
+            <div class="dev-img-container">
+              <img src="https://cdn-icons-png.flaticon.com/512/3011/3011270.png" alt="Dev">
+            </div>
+            <div class="dev-info">
+              <h4>You (The Creator)</h4>
+              <span class="role">Lead Developer</span>
+              <p>CS Student @ AMU</p>
+            </div>
+          </div>
+
+          <!-- Dev 2 (Placeholder) -->
+          <div class="dev-card">
+            <div class="dev-img-container">
+              <img src="https://cdn-icons-png.flaticon.com/512/3011/3011276.png" alt="Dev">
+            </div>
+            <div class="dev-info">
+              <h4>The Community</h4>
+              <span class="role">Content Contributors</span>
+              <p>Students & Teachers</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Roadmap / Future -->
+      <div class="roadmap-section">
+        <h2>System Roadmap_2025</h2>
+        <ul class="roadmap-list">
+          <li class="done"><span>✓</span> Launch Beta Version in Arba Minch</li>
+          <li><span>○</span> Add "Battle Mode" (Multiplayer Quiz)</li>
+          <li><span>○</span> Expand to Hawassa & Addis Ababa University</li>
+          <li><span>○</span> Offline Mobile App Mode</li>
+        </ul>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <button class="btn" onclick="showPage('home')">Return to Home</button>
+      </div>
+
     </div>
   </div>
+  <!-- ONLINE COURSES PAGE -->
+ <!-- === VIDEO LECTURE HALL (Replaces Courses) === -->
+<div id="courses-page" class="page">
+  <div class="quiz-container">
+    <div class="about-header">
+      <h1 class="neon-text">DIGITAL CLASSROOM</h1>
+      <p class="about-subtitle">Stream lectures directly from the AMU network.</p>
+    </div>
 
-  <!-- FOOTER -->
+    <!-- Filters (Visual only for now) -->
+    <div class="video-filters">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Freshman</button>
+      <button class="filter-btn">Entrance Prep</button>
+      <button class="filter-btn">Programming</button>
+    </div>
+
+    <div class="video-grid">
+      
+      <!-- Video 1: Logic -->
+      <div class="video-card">
+        <div class="video-frame">
+          <!-- Freshman Logic & Critical Thinking -->
+          <iframe src="https://www.youtube.com/embed/videoseries?list=PL2N4X0j1qTzW-2H7gL1yK8jC_j6qW_j6q" title="Logic Lecture" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <div class="v-tags">
+            <span class="v-tag fresh">Freshman</span>
+            <span class="v-tag sub">Logic</span>
+          </div>
+          <h3>Chapter 1: Intro to Critical Thinking</h3>
+          <p>Understanding arguments, premises, and basic logic concepts.</p>
+        </div>
+      </div>
+
+      <!-- Video 2: Applied Math -->
+      <div class="video-card">
+        <div class="video-frame">
+          <!-- Applied Math I (Limits) -->
+          <iframe src="https://www.youtube.com/embed/videoseries?list=PL2N4X0j1qTzX8jC_j6qW_j6qW_j6qW_j" title="Applied Math" allowfullscreen></iframe>
+           <!-- Note: Using a generic math search fallback if list invalid, 
+                Below is a specific single video for Applied Math -->
+           <iframe src="https://www.youtube.com/embed/5y0qT_0r0T0" title="Applied Math Limits" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <div class="v-tags">
+            <span class="v-tag fresh">Freshman</span>
+            <span class="v-tag sub">Math</span>
+          </div>
+          <h3>Applied Math I: Limits & Continuity</h3>
+          <p>Full breakdown of limits for engineering students.</p>
+        </div>
+      </div>
+
+      <!-- Video 3: Grade 12 Physics -->
+      <div class="video-card">
+        <div class="video-frame">
+          <!-- Entrance Exam Physics -->
+          <iframe src="https://www.youtube.com/embed/J7gq1KzJ0qg" title="Physics Entrance" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <div class="v-tags">
+            <span class="v-tag high">Grade 12</span>
+            <span class="v-tag sub">Physics</span>
+          </div>
+          <h3>Entrance Exam Review: Mechanics</h3>
+          <p>Solving previous year national exam questions step-by-step.</p>
+        </div>
+      </div>
+
+      <!-- Video 4: C++ Programming -->
+      <div class="video-card">
+        <div class="video-frame">
+           <iframe src="https://www.youtube.com/embed/vLnPwxZdW4Y" title="C++ Tutorial" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <div class="v-tags">
+            <span class="v-tag fresh">Freshman</span>
+            <span class="v-tag sub">Coding</span>
+          </div>
+          <h3>C++ for Beginners (Full Course)</h3>
+          <p>Required for Computing and Engineering students.</p>
+        </div>
+      </div>
+
+      <!-- Video 5: Communicative English -->
+      <div class="video-card">
+        <div class="video-frame">
+           <iframe src="https://www.youtube.com/embed/Fw0W_6w_1Q8" title="English Grammar" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <div class="v-tags">
+            <span class="v-tag fresh">Freshman</span>
+            <span class="v-tag sub">English</span>
+          </div>
+          <h3>Communicative English Skills</h3>
+          <p>Grammar and paragraph writing techniques.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  <!-- DISCUSSION / CHAT PAGE -->
+ <!-- === NEW: OFFLINE DATA BANK (Replaces Chat) === -->
+<div id="resources-page" class="page">
+  <div class="quiz-container">
+    <div class="about-header">
+      <h1 class="neon-text">OFFLINE DATA BANK</h1>
+      <p class="about-subtitle">Secure downloads for exam preparation.</p>
+    </div>
+
+    <div class="resource-grid">
+      
+      <!-- Resource 1 -->
+      <div class="resource-card">
+        <div class="file-icon">PDF</div>
+        <div class="file-info">
+          <h4>Communicative English</h4>
+          <span>Summary • 2.4 MB</span>
+        </div>
+        <button class="btn-download" onclick="alert('Downloading...')">⬇</button>
+      </div>
+
+      <!-- Resource 2 -->
+      <div class="resource-card">
+        <div class="file-icon">ZIP</div>
+        <div class="file-info">
+          <h4>Applied Math I - Worksheets</h4>
+          <span>2015-2016 Exams • 15 MB</span>
+        </div>
+        <button class="btn-download" onclick="alert('Downloading...')">⬇</button>
+      </div>
+
+      <!-- Resource 3 -->
+      <div class="resource-card">
+        <div class="file-icon">PDF</div>
+        <div class="file-info">
+          <h4>Logic & Critical Thinking</h4>
+          <span>Chapter 1-4 Notes • 5.1 MB</span>
+        </div>
+        <button class="btn-download" onclick="alert('Downloading...')">⬇</button>
+      </div>
+
+      <!-- Resource 4 -->
+      <div class="resource-card">
+        <div class="file-icon">DOC</div>
+        <div class="file-info">
+          <h4>Grade 12 Bio - Cheat Sheet</h4>
+          <span>Entrance Review • 1.2 MB</span>
+        </div>
+        <button class="btn-download" onclick="alert('Downloading...')">⬇</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
   <footer>
     <p>© 2025 NeoQuiz — Made in Arba Minch</p>
-    <div class="socials">
-      <a href="#">FB</a> • <a href="#">TW</a> • <a href="#">IG</a>
-    </div>
   </footer>
 </body>
 </html>
